@@ -29,3 +29,5 @@ next, motion-framer, swiper, react, tailwind, github, @heroicons/react, react-qu
 - **3주차 목표**: 이때까지 완성 못했다면 마저 완성시키기.
 
 ### 04/10
+
+1. 헤더작성중
