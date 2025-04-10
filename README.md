@@ -10,11 +10,11 @@ https://www.airbnb.co.kr/?search_mode=flex_destinations_search&amenities%5B%5D=7
 
 ### 스택
 
-next, framer-motion, swiper, react, tailwind, github, @heroicons/react, react-query
+next, motion-framer, swiper, react, tailwind, github, @heroicons/react, react-query, axios
 
 ### 필요없는 라이브러리(클론 코딩과 관련없지만 개인학습 용도로 설치)
 
-- lenis, motion-framer
+- lenis
 
 ### 기타
 
@@ -24,7 +24,8 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react, react-qu
 
 ### 코딩시작 - 25/4/10
 
-- **1주차 목표**: header와 오른쪽에 고정된 메뉴바 작
-- **2주차 목표 이후**: 주마다 2 section씩 반응형을 포함하여 코딩하기
+- **1주차 목표**: header와 footer, 가능하면 간단한 애니메이션을 지닌 skelton 구현.
+- **2주차 목표**: react-query와 axios, swiper을 조합한 아이템 슬라이드.
+- **3주차 목표**: 이때까지 완성 못했다면 마저 완성시키기.
 
-#### 25/03/18
+### 04/10
