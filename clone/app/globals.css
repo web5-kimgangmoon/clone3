@@ -11,8 +11,18 @@
   max-width: unset;
 }
 
-/* @theme {
-} */
+@theme {
+  /* 기본 상태 */
+  --breakpoint-xl: 1280px;
+  /* 이미지 글자 사라짐 */
+  --breakpoint-lg: 1135px;
+  /* 가운데 왼쪽 정렬, 세로로 */
+  --breakpoint-md: 945px;
+  /* 새로운 레이아웃(모바일) */
+  --breakpoint-sm: 740px;
+  /* 한 줄 */
+  --breakpoint-xs: 550px;
+}
 
 @theme inline {
   --color-background: var(--background);

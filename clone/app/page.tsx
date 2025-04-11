@@ -1,8 +1,10 @@
 "use client";
 
+import useBreakpointProvider from "./hooks/useBreakpointProvider";
 import Header from "./ui/header";
 
 export default function Home() {
+  useBreakpointProvider();
   return (
     <>
       <Header />
