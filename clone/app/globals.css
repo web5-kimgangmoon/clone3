@@ -19,7 +19,7 @@
   /* 가운데 왼쪽 정렬, 세로로 */
   --breakpoint-md: 945px;
   /* 새로운 레이아웃(모바일) */
-  --breakpoint-sm: 740px;
+  --breakpoint-sm: 750px;
   /* 한 줄 */
   --breakpoint-xs: 550px;
 }

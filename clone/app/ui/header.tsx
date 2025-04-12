@@ -38,7 +38,15 @@ export default function Header() {
               </div>
             </Link>
           </div>
-          <CenterHeader isTop={isTop} breakpoint={breakpoint} />
+          <div
+            className="w-full h-full basis-full"
+            style={{ flex: "0 1 auto" }}
+          >
+            <div className={clsx("relative w-full h-full")}>
+              <CenterHeader isTop={isTop} breakpoint={breakpoint} />
+            </div>
+            <CenterHeader_top isTop={isTop} breakpoint={breakpoint} />
+          </div>
           <div className="w-full flex justify-end">
             <div className="flex items-center gap-3">
               <Link
@@ -63,56 +71,10 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <CenterHeader_top isTop={isTop} breakpoint={breakpoint} />
       </div>
     </motion.header>
   );
 }
-
-// const CenterHeader = ({ isTop }: { isTop: boolean }) => {
-//   return (
-//     <motion.div
-//       className="flex flex-col items-center w-full h-[80px] max-w-[360px] overflow-visible"
-//       initial={{ translateY: "0" }}
-//       animate={isTop ? { translateY: "0" } : { translateY: "-100%" }}
-//       transition={{ bounce: 0 }}
-//     >
-//       <div className="w-full h-full flex basis-full shrink-0 justify-center items-center gap-7 text-lg font-[250]">
-//         <button className="cursor-pointer">숙소</button>
-//         <button className="text-zinc-500 cursor-pointer">체험</button>
-//       </div>
-//       <motion.div
-//         className={clsx(
-//           "h-full basis-full shrink-0 flex justify-center items-center",
-//           isTop ? "max-w-[630px]" : "max-w-[360px]"
-//         )}
-//         initial={{ width: "100vw", scale: 1.35 }}
-//         animate={{
-//           width: isTop ? "100vw" : "100%",
-//           scale: isTop ? [1, 2.5, 1.35] : 1,
-//         }}
-//       >
-//         <motion.div
-//           className={clsx("w-full h-[48px] bg-red-300")}
-//           initial={
-//             {
-//               // opacity: 1
-//             }
-//           }
-//           animate={{
-//             opacity: isTop ? [1, 0, 1] : 1,
-//           }}
-//           transition={{
-//             opacity: {
-//               tiems: [0, 0.7, 1],
-//             },
-//             scale: { times: [0, 0.7, 1] },
-//           }}
-//         ></motion.div>
-//       </motion.div>
-//     </motion.div>
-//   );
-// };
 
 const CenterHeader = ({
   isTop,
@@ -122,59 +84,95 @@ const CenterHeader = ({
   breakpoint: string;
 }) => {
   return (
-    <div
-      className={clsx(
-        "relative w-full max-w-[408px] h-full px-[24px] shink-0 basis-full"
-      )}
+    <motion.div
+      className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center max- w-full h-[80px] px-[24px] overflow-visible"
+      initial={{ translateY: "0", opacity: 1 }}
+      animate={{
+        opacity: isTop ? 0 : 1,
+        translateY: isTop ? `${breakpoint === "xl" ? "0%" : "100%"}` : `-100%`,
+        translateX: isTop
+          ? `${
+              breakpoint !== "xl" && breakpoint !== "lg"
+                ? "calc( 50vw - 50% - 54px )"
+                : "0%"
+            }`
+          : "0%",
+        display: isTop ? "none" : "block",
+      }}
+      transition={{
+        opacity: {
+          tiems: [0, 1],
+          duration: 0.1,
+          delay: isTop ? 0 : 0.1,
+        },
+        display: {
+          duration: 0,
+          delay: 0.1,
+        },
+        scale: { times: [0, 1] },
+        bounce: 0,
+        duration: 0.15,
+      }}
     >
-      <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-full h-[80px] px-[24px] overflow-visible"
-        initial={{ translateY: "0", opacity: 1 }}
-        animate={{
-          opacity: isTop ? 0 : 1,
-          translateY: isTop
-            ? `${breakpoint === "xl" ? "0%" : "100%"}`
-            : `-100%`,
-          translateX: isTop ? `${breakpoint === "xl" ? "0%" : "200px"}` : "0%",
-        }}
-        transition={{
-          opacity: {
-            tiems: [0, 1],
-            delay: isTop ? 0 : 0.15,
-          },
-          scale: { times: [0, 1] },
-          bounce: 0,
-          duration: 0.15,
-        }}
-      >
-        <div className="w-full h-full flex basis-full shrink-0 justify-center items-center gap-7 text-lg font-[250]">
-          <button className="cursor-pointer">숙소</button>
-          <button className="text-zinc-500 cursor-pointer">체험</button>
-        </div>
-        <div
-          className={clsx(
-            "w-full h-full basis-full shrink-0 flex justify-center items-center"
-          )}
+      <div className=" h-full flex basis-full shrink-0 justify-center items-center gap-7 text-lg font-[250]">
+        <button className="cursor-pointer">숙소</button>
+        <button className="text-zinc-500 cursor-pointer">체험</button>
+      </div>
+      <div className={clsx("h-full flex justify-center items-center")}>
+        <motion.button
+          className={clsx("flex min-w-0 h-[48px] bg-red-300 cursor-pointer")}
+          initial={{
+            scaleX: 1,
+            scaleY: 1,
+          }}
+          animate={{
+            scaleX: isTop ? 2.361 : 1,
+            scaleY: isTop ? 1.33 : 1,
+          }}
+          transition={{
+            duration: 0.15,
+            bounce: 0,
+          }}
+          style={{
+            gridTemplateColumns:
+              "minmax(0, min-content) min-content minmax(0, min-content) min-content minmax(0, min-content)",
+          }}
         >
-          <motion.div
-            className={clsx("w-[100%] h-[48px] bg-red-300")}
-            initial={{
-              scaleX: 1,
-              scaleY: 1,
-              // opacity: 1
-            }}
-            animate={{
-              scaleX: isTop ? 2.361 : 1,
-              scaleY: isTop ? 1.33 : 1,
-            }}
-            transition={{
-              duration: 0.15,
-              bounce: 0,
-            }}
-          ></motion.div>
-        </div>
-      </motion.div>
-    </div>
+          <div className=" items-center min-w-0 max-w-min">
+            <div
+              className={clsx("relative px-4 truncate min-w-0")}
+              // style={{
+              //   flex: "1 1 auto",
+              // }}
+            >
+              어디든지
+            </div>
+          </div>
+          <div className="w-[1px] h-[28px] my-[10px] border-r" />
+          <div className=" items-center min-w-0 max-w-min">
+            <div
+              className={clsx("relative px-4 truncate min-w-0")}
+              // style={{
+              //   flex: "1 1 auto",
+              // }}
+            >
+              언제든지 일주일
+            </div>
+          </div>
+          <div className="w-[1px] h-[28px] my-[10px] border-r" />
+          <div className=" items-center min-w-0 max-w-min">
+            <div
+              className={clsx("relative px-4 truncate min-w-0")}
+              // style={{
+              //   flex: "1 1 auto",
+              // }}
+            >
+              게스트 추가
+            </div>
+          </div>
+        </motion.button>
+      </div>
+    </motion.div>
   );
 };
 
@@ -191,13 +189,25 @@ const CenterHeader_top = ({
       initial={{ translateY: "0", opacity: isTop ? [1, 0] : 1 }}
       animate={{
         opacity: isTop ? 1 : 0,
-        translateX: isTop ? "0%" : `${breakpoint === "xl" ? "0%" : "-200px"}`,
         translateY: isTop ? "0" : `${breakpoint === "xl" ? "-100%" : "-200%"}`,
+        translateX: isTop
+          ? "0%"
+          : `${
+              breakpoint !== "xl" && breakpoint !== "lg"
+                ? "calc( -50vw + 239px )"
+                : "0%"
+            }`,
+        display: isTop ? "block" : "none",
       }}
       transition={{
         opacity: {
           tiems: [0, 1],
-          delay: isTop ? 0.15 : 0,
+          duration: 0.1,
+          delay: isTop ? 0.1 : 0,
+        },
+        display: {
+          duration: 0,
+          delay: 0.1,
         },
         scale: { times: [0, 1] },
         bounce: 0,
